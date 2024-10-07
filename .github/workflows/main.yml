@@ -34,7 +34,7 @@ jobs:
           fi
 
           # Install Node.js dependencies
-          npm install
+          # npm install
 
           # Restart the Node.js app using PM2
           # pm2 restart all || pm2 start hello.js --name "hello"
