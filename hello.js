@@ -15,7 +15,7 @@ var listener = function (request, response) {
 var server = http.createServer(listener);
 
 // Make the server listen on port 3000
-server.listen(3000);
+server.listen(3001);
 
 // Log the server status
 console.log('Server running at http://127.0.0.1:3001/');
