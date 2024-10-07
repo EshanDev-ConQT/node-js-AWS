@@ -1,0 +1,37 @@
+name: Deploy Node.js App to EC2
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Check out the code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Use the SSH key to set up SSH agent
+    - name: Start SSH agent and add the EC2 key
+      uses: webfactory/ssh-agent@v0.8.1
+      with:
+        ssh-private-key: ${{ secrets.EC2_PRIVATE_KEY }}
+
+    # Step 3: Deploy the application on EC2
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          cd /path/to/your/app
+
+          # Pull the latest code
+          git pull origin main
+
+          # Install dependencies
+          npm install
+
+          # Restart the app using PM2 (or any other process manager)
+          pm2 restart all || pm2 start app.js --name "node-app"
+        EOF
