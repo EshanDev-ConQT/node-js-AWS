@@ -16,9 +16,10 @@ jobs:
 
     # Step 2: Use the SSH key to set up SSH agent
     - name: Start SSH agent and add the EC2 key
-      uses: webfactory/ssh-agent@v0.8.1
+      uses: webfactory/ssh-agent@v0.9.0
       with:
         ssh-private-key: ${{ secrets.EC2_PRIVATE_KEY }}
+  
 
     # Step 3: Deploy the application on EC2
     - name: Deploy to EC2
