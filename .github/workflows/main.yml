@@ -33,16 +33,6 @@ jobs:
             cd /home/ubuntu/conqt
           fi
 
-          # Install Node.js dependencies if package.json exists
-          if [ -f \"package.json\" ]; then
-            npm install
-          fi
-
-          # Install pm2 globally if not installed
-          if ! command -v pm2 &> /dev/null; then
-            sudo npm install -g pm2
-          fi
-
           # Restart the Node.js app using PM2, or start it if it's not running
           pm2 restart all || pm2 start hello.js
         "
