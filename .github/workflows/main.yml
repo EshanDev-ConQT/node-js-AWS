@@ -34,5 +34,5 @@ jobs:
           fi
 
           # Restart the Node.js app using PM2, or start it if it's not running
-          pm2 restart all || pm2 start hello.js
+          pm2 restart all || pm2 start app.js
         "
