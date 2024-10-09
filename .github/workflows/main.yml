@@ -33,6 +33,7 @@ jobs:
             cd /home/ubuntu/conqt
           fi
 
+          npm install
           # Restart the Node.js app using PM2, or start it if it's not running
           pm2 restart all || pm2 start app.js
         "
