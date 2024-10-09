@@ -23,9 +23,9 @@ jobs:
     # Step 3: SSH into the EC2 instance, pull the latest code, install dependencies, and restart the app
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no -t ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+        ssh -o StrictHostKeyChecking=no -t ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "
           # Navigate to the application directory (if exists) or clone the repo
-          if [ -d "/home/ubuntu/conqt" ]; then
+          if [ -d \"/home/ubuntu/conqt\" ]; then
             cd /home/ubuntu/conqt
             git pull origin main
           else
@@ -34,7 +34,7 @@ jobs:
           fi
 
           # Install Node.js dependencies if package.json exists
-          if [ -f "package.json" ]; then
+          if [ -f \"package.json\" ]; then
             npm install
           fi
 
@@ -45,5 +45,4 @@ jobs:
 
           # Restart the Node.js app using PM2, or start it if it's not running
           pm2 restart all || pm2 start hello.js
-
-        EOF
+        "
