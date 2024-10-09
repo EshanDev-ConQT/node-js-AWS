@@ -37,7 +37,7 @@ jobs:
           # npm install
 
           # Restart the Node.js app using PM2
-          #m2 restart all || pm2 start hello.js --name "hello"
-          node hello.js
+          m2 restart all || pm2 start hello.js
+          #node hello.js
 
         EOF
